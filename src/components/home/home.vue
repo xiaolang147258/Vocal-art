@@ -33,7 +33,7 @@
       
       <div class="img_box_2">
       	  <input @blur="inp_show=true" @focus="inp_show=false" type="text" id="inp" />
-      	  <img v-show="inp_show" src="../../../static/img/sousuo.png" alt="" /><p v-show="inp_show">搜索学生姓名</p>
+      	  <img @click="inp_fl" v-show="inp_show" src="../../../static/img/sousuo.png" alt="" /><p @click="inp_fl" v-show="inp_show">搜索学生姓名</p>
       </div>
       
       <div class="yin_s2">
@@ -85,6 +85,9 @@ export default {
     }
   },
   methods:{
+  	inp_fl(){
+  		document.getElementById('inp').focus()
+  	},
   	  btn_click(i){
   	  	this.show_btn = i 
   	  },
