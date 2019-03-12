@@ -1,7 +1,7 @@
 <template>
   <div id="app"  >
   	
-  <transition :name="transitionName"> 
+  <transition :name="transitionName" mode=""> 
      <router-view class="transitionBody"></router-view>
   </transition> 
    
@@ -44,9 +44,11 @@ export default {
   
   watch: { 
   '$route' (to, from) { 
+  	
    const arr = ['/home','/rule','/Upload_video'];
    const compare = arr.indexOf(to.path)>arr.indexOf(from.path);
    this.transitionName = compare ? 'transitionLeft' : 'transitionRight';
+   
   } 
  },
   
@@ -55,6 +57,7 @@ export default {
  	  	 router.push({
   	   	 path:'./home',
   	   });
+  	   
  	  },
  	  btn_c2(){
  	  	 router.push({
@@ -68,7 +71,7 @@ export default {
  	  },
  },
  mounted(){
- 	
+ 	 
  }
 }
 </script>
@@ -126,6 +129,7 @@ export default {
   transform: translate(100%, 0); 
   position: absolute;
   top: 0;
+  /*min-height: 100%;*/
    /*当左滑进入右滑进入过渡动画*/
 }
  
@@ -135,9 +139,7 @@ export default {
   transform: translate(-100%, 0); 
   position: absolute;
   top: 0;
+  /*min-height: 100%;*/
 }
-	
-	
-	
 
 </style>

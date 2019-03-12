@@ -1,16 +1,21 @@
 <template>
   <!--上传视频-->
-  <div id="hello" style="width:100%;background:#F8515E;padding:0.266666rem 0;">
+  <div id="hello" style="width:100%;background:#F8515E;padding:0.266666rem 0;" :class="{hellos:class_show}">
+     
+     <img class="left_inf" src="../../../static/img/fengye.png" alt="" />
+      <img class="left_inf2" src="../../../static/img/fengye_a.png" alt="" />
+     <img class="left_inf3" src="../../../static/img/fengye_b.png" alt="" />
+     
      <div class="hel_f">
      	  <div class="hel_f_c">
      	  	
      	  	  <div class="hel_f_c_top">
-     	  	  	<div @click="hel_tab_sw=0" class="hel_f_c_top_c" :class="{hel_tab:hel_tab_sw==0}">上传视频</div>
-     	  	  	<div @click="hel_tab_sw=1" class="hel_f_c_top_c" :class="{hel_tab:hel_tab_sw==1}">已上传视频</div>
+     	  	  	<div @click="hel_click(0)" class="hel_f_c_top_c" :class="{hel_tab:hel_tab_sw==0}">上传视频</div>
+     	  	  	<div @click="hel_click(1)" class="hel_f_c_top_c" :class="{hel_tab:hel_tab_sw==1}">已上传视频</div>
      	  	  </div>
      	  	 
      	  	 <!--上传视频组件-->
-     	  	  <div>
+     	  	  <div v-if="hel_tab_sw==0">
      	  	  	 <div class="git_video_box">
      	  	  	 	   <p class="video_p">上传视频</p>
      	  	  	 	   <div class="video_img">
@@ -51,23 +56,46 @@
      	  	  	 <!--标题-->
      	  	  	 <div class="title">
      	  	  	 	   <p class="video_p" style="margin: 0;">视频标题</p>  
-     	  	  	 	   <input type="text" id="inp" placeholder="起个好玩的名字吧～" />
+     	  	  	 	   <input @blur="to_top" v-model="inp_val" type="text" id="inp" placeholder="起个好玩的名字吧～" />
      	  	  	 </div>
      	  	  	 
      	  	  	 <div class="title_val">
      	  	  	 	  <p class="video_p" style="margin: 0;">视频标题</p>
      	  	  	 	  <div class="text_box">
-     	  	  	 	  	<textarea v-model="text_val" maxlength="300" class="texta" placeholder="介绍下你的视频吧，可以为你的视频吸引人气哦～"></textarea>
+     	  	  	 	  	<textarea @blur="to_top" v-model="text_val" maxlength="300" class="texta" placeholder="介绍下你的视频吧，可以为你的视频吸引人气哦～"></textarea>
      	  	  	 	  	<p>{{text_val.length}}/300</p>
      	  	  	 	  </div>
      	  	  	 </div>
      	  	  	 
      	  	  	 <div class="dal_btn">
-     	  	  	 	   <div class="quxiao">取消上传</div><div class="quxiaos_s">确认上传</div>
+     	  	  	 	   <div @click="git_home" class="quxiao">取消上传</div><div @click="que_click" class="quxiaos_s">确认上传</div>
      	  	  	 </div>
      	  	  	 
      	  	  </div> 
      	  	  
+     	  	  <div v-else>
+     	  	  	
+     	  	  	 <div class="video_tab_box" v-for="i in 5">
+     	  	  	 	  <p class="video_ps">上传日期：2019-03-08  22:21:32</p>
+     	  	  	 	  <div class="video_box">
+     	  	  	 	  	  <div class="video_img_box">
+     	  	  	 	  	  	<img id="video_img_box_img2" src="../../../static/img/upimg/bofanganniu.png" alt="" />
+     	  	  	 	  	  	<img id="video_img_box_img1" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1800442878,3200333987&fm=27&gp=0.jpg" alt="" />
+     	  	  	 	  	  </div>
+     	  	  	 	  	  <div class="video_p_box">
+     	  	  	 	  	  	  <p class="name_p">王小五</p><div class="name_hao">23441号</div>
+     	  	  	 	  	  	  <p class="text_p">剑桥郡外国语言学校</p>
+     	  	  	 	  	  	  <div class="piao_shu"><img src="../../../static/img/upimg/piaoshu.png"/>
+     	  	  	 	  	  	     <p>83485票</p>
+     	  	  	 	  	  	  </div>
+     	  	  	 	  	  </div>
+     	  	  	 	  	  <div class="video_btn_box">
+     	  	  	 	  	  	  <div style="background:#FF6F7A;margin-bottom: 0.426666rem;">投票(+1)</div>
+     	  	  	 	  	  	  <div style="background:#4DB1E5;">大力支持(+10)</div>
+     	  	  	 	  	  </div> 
+     	  	  	 	  </div>
+     	  	  	 </div>
+     	  	  </div>
      	  </div>
      </div>
         
@@ -90,7 +118,36 @@
             @confirm="onConfirm_s"
           />
     </van-popup>   
-       
+    
+<!--绑定手机号弹框----------------------------------------------------------------------------------------------------------------->   
+     <mu-fade-transition>
+          <div @touchmove.prevent class="iphone_s" v-show="show4">
+          	 <div class="iphone_s_box">
+          	 	   <p class="iphone_s_box_p">释放孩子们独特的魅力吧～</p><img class="iphone_s_box_img" src="../../../static/img/upimg/haizi.png" alt="" />
+          	 	   <input v-model="names" @blur="to_top" class="iphone_s_box_inp" type="text" placeholder="请填写您的姓名" />
+          	 	   <input v-model="iphones" style="margin-top:0.266666rem;" @blur="to_top" class="iphone_s_box_inp" type="number" pattern="\d*" name="number" placeholder="请输入手机号" />
+          	     <div class="iphone_s_box_p_box"><img src="../../../static/img/upimg/tishi.png"/><p>首次上传视频需完善个人信息</p></div>
+          	     <div class="btn_boxs">
+          	     	   <div @click="show4=false" style="background:rgba(255,223,99,1);float:left;color:#666666;" class="btn_boxsbtn">考虑一下</div>
+          	     	   <div @click="iphone_bao_cun" style="background:#4DB1E5;float: right;" class="btn_boxsbtn">保存</div>
+          	     </div>
+          	 </div>
+          </div>
+    </mu-fade-transition>
+    
+    <mu-fade-transition>
+          <div @touchmove.prevent class="iphone_ss" v-show="show5">
+          	   <mu-scale-transition>
+                  <div class="ok_box" v-show="show5">
+                  	 <img class="ok_box_img1" src="../../../static/img/upimg/erweima.png" alt="" />
+                  	 <div class="ppp">恭喜您参赛成功，您的参赛编号是<a>231</a>号</div>
+                  	 <div @click="git_home" class="ok_box_btn">我知道了</div>
+                  	 <img @click="show5=false" class="ok_box_img2" src="../../../static/img/upimg/guanbi (1).png"/>
+                  </div>
+              </mu-scale-transition>
+          </div>
+    </mu-fade-transition>
+    
   </div>
 </template>
 
@@ -103,8 +160,16 @@ export default {
   
   data(){
     return {
-    	 text_val:'',
+    	show5:false,
     	
+    	names:'',
+    	iphones:'',
+    	show4:true,//绑定手机号弹框状态
+    	
+    	 class_show:true,
+    	
+    	 text_val:'',
+    	 inp_val:'',
     	
     	 inp_show:true,
     	 img_file:'static/img/upimg/tupian.png',
@@ -129,6 +194,49 @@ export default {
     }
   },
   methods:{
+  	git_home(){
+  		
+  		 router.push({
+  	   	 path:'./home',
+  	   });
+  	},
+  	iphone_bao_cun(){//保存手机号，点击保存
+  		 if(this.names!=''&&this.iphones!=''&&this.iphones.length==11){
+  		 	   this.show4 = false  
+  		 }else{
+  		 	  this.$toast({
+        	      message:'信息有误',
+        	      duration:1000
+        	  });
+  		 }
+  	},
+  	to_top(){//返回顶部
+      window.scrollTo(0,0);  
+  	},
+  	que_click(){//确认上传
+  		
+  		this.show5 = true
+//		 if(this.video_file!=''&&this.saiqu!='请选择赛区'&&this.xiaoqu!='请选择校区'&&this.video_img_file!=''&&this.inp_val!=''&&this.text_val!=''){
+//		 	   
+//		 	   
+//		 }else{
+//		 	  this.$toast({
+//      	      message:'请先完善信息',
+//      	      duration:1000
+//      	  });
+//		 }
+  		 
+  		 
+  	},
+  	
+  	
+  	hel_click(i){
+  		this.hel_tab_sw=i;
+  		
+  		this.class_show = i==1?false:true;
+  		
+  		
+  	},
   	img_box(){//放大查看图片
   		 var a = [];
   		 a.push(this.video_img_file.content);
@@ -195,7 +303,7 @@ export default {
   	  store.state.bottom_1 = false;store.state.bottom_2 = false;store.state.bottom_3 = true;
   	  
 //	  window.setTimeout(()=>{
-//	  	document.getElementById('hello').style.height = document.documentElement.clientHeight+'px';
+//	  	document.getElementById('hello').style.minHeight = document.documentElement.clientHeight+'px';
 //	  },0)
 	    
   }
@@ -203,6 +311,268 @@ export default {
 </script>
 
 <style scoped>
+	.ok_box_img2{
+		width: 1.013333rem;
+		height: 1.013333rem;
+		position: absolute;
+		left: 3.813333rem;
+		bottom:-1.426666rem;
+	}
+	.ok_box_btn{
+		 width:3.346666rem;
+height:1.173333rem;
+background:rgba(77,177,229,1);
+opacity:1;
+border-radius:0.586666rem;
+font-size: 0.426666rem;
+color: white;
+text-align: center;
+line-height: 1.173333rem;
+margin: 0.4rem auto;
+	}
+	.ok_box_img1{
+		 width: 2.613333rem;
+		 height: 2.613333rem;
+		 margin:0 3.04rem;
+	}
+	.ppp{
+		 width: 4.106666rem;
+		 height: 1.333333rem;
+		 font-size: 0.426666rem;
+		 color: #666666;
+		 margin: auto;
+		 text-align: center;
+		 margin-top: 0.4rem;
+	}
+	.ok_box{
+		 width:8.72rem;
+		 height: 7.426666rem;
+		 margin: 2.746666rem auto;
+		 background: white;
+		 border-radius:0.266666rem;
+		 position: relative;
+		 text-align: center;
+		 padding-top: 0.8rem;
+	}
+	
+	.btn_boxsbtn{
+		 width: 3.346666rem;
+		 height: 100%;
+		 
+opacity:1;
+border-radius:0.586666rem;
+text-align: center;
+color: white;
+	}
+	.btn_boxs{
+		 width: 7.44rem;
+		 height: 1.173333rem;
+		 line-height: 1.173333rem;
+		 font-size: 0.426666rem;
+		 margin-top: 0.533333rem;
+	}
+	.iphone_s_box_p_box p{
+		 float: left;
+		 line-height: 0.36rem;
+	}
+	.iphone_s_box_p_box img{
+		width: 0.36rem;
+		height: 0.36rem;
+		float: left;
+		margin-right: 0.2rem;
+		
+	}
+	.iphone_s_box_p_box{
+		 width: 5.333333rem;
+		 height: 0.36rem;
+		 font-size: 0.346666rem;
+		 color: #FF002D;
+		 margin-top: 0.4rem;
+	}
+	.iphone_s_box_inp{
+		width: 7.44rem;
+		height: 1.013333rem;
+		border: none;background: #F0F0F0;
+		margin-top: 0.533333rem;
+		padding-left: 0.266666rem;
+		font-size: 0.333333rem;
+		/*color: #BABABA;*/
+	}
+	.iphone_s_box_img{
+		 width: 2.506666rem;
+		 height: 2.96rem;
+		 position: absolute;
+		 top: -0.68rem;
+		 right: 0.586666rem;
+	}
+	.iphone_s_box_p{
+		font-size: 0.426666rem;
+		color: #4DB1E5;
+	}
+	.iphone_s_box{
+		 width: 8.72rem;
+		 height: 7.626666rem;
+		 margin: 3.373333rem auto;
+		 background: white;
+		 border-radius:0.266666rem;
+		 position: relative;
+		 padding: 0.8rem 0.64rem;
+	}
+	.iphone_ss{
+		 width: 100%;
+		 height: 100%;
+		 position: fixed;
+		 top: 0;
+		 left: 0;
+		 z-index: 500;
+		 background: rgba(0,0,0,.5);
+	}
+	.iphone_s{
+		 width: 100%;
+		 height: 100%;
+		 position: fixed;
+		 top: 0;
+		 left: 0;
+		 z-index: 500;
+		 background: rgba(0,0,0,.5);
+	}
+	.left_inf3{
+		 width:3.88rem;
+		 height:4.133333rem;
+		 position: fixed;
+		 bottom:0;
+		 right: 0;
+		 z-index: 0;
+	}
+	.left_inf2{
+		 width:1.773333rem;
+		 height:3.613333rem;
+		 position: fixed;
+		 top:7.506666rem;
+		 left: 0;
+		 z-index: 0;
+	}
+	.left_inf{
+		 width: 1.76rem;
+		 height: 3.053333rem;
+		 position: fixed;
+		 top: 3.52rem;
+		 right: 0;
+		 z-index: 0;
+	}
+	.video_btn_box div{
+		 width: 100%;
+		 height: 0.853333rem;
+		 line-height: 0.853333rem;
+		 color: white;
+		 text-align: center;
+		 font-size: 0.373333rem;
+		 border-radius:0.133333rem;
+		 
+	}
+	.video_btn_box{
+		 width: 2.426666rem;
+		 height: 100%;
+		 float: right;
+		 
+	}
+	
+	.piao_shu p{
+		 font-size: 0.293333rem;
+		 color: #FF6F7A;
+		 float: left;
+		 margin-left: 0.16rem;
+		 line-height: 0.373333rem;
+	}
+	.piao_shu img{
+		width: 0.373333rem;
+		height: 0.373333rem;
+		float: left;
+	}
+	.piao_shu{
+		 width: 100%;
+		 height: 0.373333rem;
+		 margin-top: 0.4rem;
+		 float: left;
+	}
+	.text_p{
+		 font-size: 0.293333rem;
+		 color: #999999;
+		 width: 100%;
+		 float: left;
+		 margin-top: 0.133333rem;
+		 overflow: hidden;
+      text-overflow:ellipsis;
+       white-space: nowrap;
+	}
+	.name_hao{
+		 width:1.386666rem;
+height:0.48rem;
+background:rgba(255,111,122,1);
+opacity:1;
+border-radius:0.32rem;
+float: left;
+margin-left: 0.266666rem;
+font-size: 0.293333rem;
+color: white;
+text-align: center;
+margin-top: 0.066666rem;
+line-height: 0.48rem;
+	}
+	.name_p{
+		font-size: 0.426666rem;
+		float: left;
+	}
+	.video_p_box{
+		width: 3.746666rem;
+		height: 100%;
+		float: left;
+		margin-left: 0.4rem;
+	}
+	#video_img_box_img2{
+		 width: 0.6rem;
+		 height: 0.6rem;
+		 position: absolute;
+		 top: 0.76rem;
+		 left: 0.76rem;
+	}
+	#video_img_box_img1{
+		 width: 100%;
+		 height: 100%;
+	}
+	.video_img_box{
+		 width: 2.133333rem;
+		 height: 100%;
+		 position: relative;
+		 float:left;
+		 
+	}
+	.video_box{
+		 width: 100%;
+		 height: 2.133333rem;
+		 margin-top: 0.266666rem;
+		 /*background: #42B983;*/
+	}
+	
+	.video_ps{
+		 font-size: 0.293333rem;
+		 color: #BABABA;
+	}
+	
+	.video_tab_box{
+		 width: 8.706666rem;
+		 height: 3.24rem;
+		 margin: 0.4rem auto;
+		 border-bottom:0.053333rem solid #D6F1FF;
+	}
+	.hellos{
+		 position: absolute;
+		 top: 0;
+		 left: 0;
+		 height: 100%;
+	}
+	
+	
 	.quxiaos_s{
 		 width: 2.506666rem;
 		 height: 0.96rem;
@@ -418,6 +788,8 @@ export default {
 	  	padding: 0.213333rem 0;
 	  	background: #FFADB4;
 	  	border-radius:0.266666rem;
+	  	position: relative;
+	  	z-index:1;
 	  }
 	  
 </style>
