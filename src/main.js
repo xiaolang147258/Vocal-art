@@ -12,25 +12,11 @@ import axios from 'axios'
 Vue.prototype.axios = axios;
 axios.defaults.baseURL='/wechat/api'; 
 
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
-Vue.use(MuseUI);
-
-import Vant from 'vant';
-import 'vant/lib/index.css';
-Vue.use(Vant);
-
 
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title;
   next()
 })
-
-//import VueTouch from 'vue-touch'
-//Vue.use(VueTouch, {name: 'v-touch'})
-
-
-
 
 
 Vue.config.productionTip = false

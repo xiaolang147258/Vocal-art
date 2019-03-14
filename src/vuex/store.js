@@ -24,7 +24,6 @@ Vue.use(Vuex);
 	 	   	Initialization.add = function(url){	}
 	 	   	    	
 const state = {
-	urls:'http://video-mp.cieo.com.cn',//全局请求头
 	
 	data:{//全局存储当前登录用登录信息
 		
@@ -32,15 +31,7 @@ const state = {
 	
 	cesi:'vuex内部执行方法',
 	
-	bottom_1:false,
 	
-	bottom_2:false,
-	
-	bottom_3:false,
-	
-	btn_show:true,//低部导航栏显示隐藏控制
-	
-	video_id:'',//获取作品详情数据的id
 	
 	video_url:'',//播放器url
     
