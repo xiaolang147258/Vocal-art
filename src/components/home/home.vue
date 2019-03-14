@@ -73,7 +73,7 @@
 
 import store from '../../vuex/store.js'
 import router from '../../router/index.js'
-
+import axios from 'axios'
 export default {
   store,
   data () {
@@ -81,11 +81,23 @@ export default {
     	inp_show:true,
     	show_btn:0,
     	
-    	
     }
   },
   methods:{
-  	go_vdet(){
+  	git_token(){//微信授权
+  		   axios.get('token'
+        	    ).then(res=>{
+        	    	 if(res.status = 200){
+        	    	 	   console.log(res.data.data);
+        	    	 	   localStorage.token = res.data.data
+        	    	 	   window.location.href = 'http://video-mp.cieo.com.cn/wechat/login?token='+localStorage.token
+        	    	 }
+                }).catch(err=>{
+                	console.log(err)
+              }); 
+  	},
+  	
+  	go_vdet(){//跳转入作品详情
   		  router.push({
   	   	 path:'./Video_details'
   	   });
@@ -95,11 +107,20 @@ export default {
   	inp_fl(){
   		document.getElementById('inp').focus()
   	},
-  	  btn_click(i){
+  	
+  	btn_click(i){
   	  	this.show_btn = i 
-  	  },
+  	},
+  	
   },
   mounted(){
+//	 if(localStorage.token){
+//	 	 console.log(localStorage.token)
+//	 }else{
+//	 	   this.git_token();
+//	 }
+  	  localStorage.token = '65b037f32dc6838e950d683215bafe4e' 
+  	
 //	   document.getElementById('hello').style.height = document.documentElement.clientHeight;
   	   this.$store.state.btn_show = true;
   	   this.$store.state.bottom_1 = true;

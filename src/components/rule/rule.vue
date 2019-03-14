@@ -12,6 +12,7 @@
 
 import store from '../../vuex/store.js'
 import router from '../../router/index.js'
+import axios from 'axios'
 export default {
   
   data () {

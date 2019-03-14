@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+         "/wechat/api":{
+            target:'http://video-mp.cieo.com.cn',//你接口的域名
+            changeOrigin: true,
+            pathRewrite: {
+                '^/api': '/'
+            }
+        }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

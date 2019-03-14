@@ -156,6 +156,8 @@
 import store from '../../vuex/store.js'
 import router from '../../router/index.js'
 import { ImagePreview } from 'vant';
+import axios from 'axios'
+import upload from '../../../static/js/upload.js'
 export default {
   
   data(){
@@ -194,6 +196,50 @@ export default {
     }
   },
   methods:{
+  	
+  	go_phone(){//完善信息
+  		  axios.get('perfect?token='+localStorage.token+'&name='+this.names+'&tel='+this.iphones
+        	    ).then(res=>{
+        	    	 if(res.status = 200){
+        	    	 	  if(res.data.status==108||res.data.status==107){//检测未登录/登录过期
+        	    	 	  	  localStorage.token = '';
+        	    	 	  	  router.push({
+  	   	                    path:'./home',
+  	                    });
+        	    	 	  }else{
+        	    	 	  	 console.log(res.data.data);
+        	    	 	  	 if(res.data.data=='请求成功'){
+        	    	 	  	 	   this.show4 = false;
+        	    	 	  	 	   this.$toast({
+        	                       message:'成功绑定信息',
+        	                       duration:1000
+        	                 });
+        	    	 	  	 }
+        	    	 	  }
+        	    	 }
+                }).catch(err=>{
+                	 console.log(err)
+              }); 
+  	},
+  	git_iphone(){//检测用户是否完善信息
+  		 axios.get('isPerfect?token='+localStorage.token
+        	    ).then(res=>{
+        	    	 if(res.status = 200){
+        	    	 	  if(res.data.status==108||res.data.status==107){//检测未登录/登录过期
+        	    	 	  	  localStorage.token = '';
+        	    	 	  	  router.push({
+  	   	                    path:'./home',
+  	                    });
+        	    	 	  }else{
+        	    	 	  	console.log(res.data);
+        	    	 	  	this.show4 = res.data.data==0?true:false;
+        	    	 	  }
+        	    	 }
+                }).catch(err=>{
+                	 console.log(err)
+              }); 
+  	},
+  	
   	go_vdieo(){
   		 router.push({
   	   	  path:'./Video_details',
@@ -209,7 +255,7 @@ export default {
   	},
   	iphone_bao_cun(){//保存手机号，点击保存
   		 if(this.names!=''&&this.iphones!=''&&this.iphones.length==11){
-  		 	   this.show4 = false  
+  		 	   this.go_phone();
   		 }else{
   		 	  this.$toast({
         	      message:'信息有误',
@@ -222,18 +268,16 @@ export default {
   	},
   	que_click(){//确认上传
   		
-  		this.show5 = true
-//		 if(this.video_file!=''&&this.saiqu!='请选择赛区'&&this.xiaoqu!='请选择校区'&&this.video_img_file!=''&&this.inp_val!=''&&this.text_val!=''){
-//		 	   
-//		 	   
-//		 }else{
-//		 	  this.$toast({
-//      	      message:'请先完善信息',
-//      	      duration:1000
-//      	  });
-//		 }
-  		 
-  		 
+		 if(this.video_file!=''&&this.saiqu!='请选择赛区'&&this.xiaoqu!='请选择校区'&&this.video_img_file!=''&&this.inp_val!=''&&this.text_val!=''){
+         
+         this.show5 = true
+         
+		 }else{
+		 	  this.$toast({
+        	      message:'请先完善信息',
+        	      duration:1000
+        	  });
+		  }
   	},
   	
   	
@@ -277,7 +321,7 @@ export default {
   	del_video(){//删除视频
   		 this.video_file = '';
   		 this.bofang_sw = false;
-  		 this.$toast.success({message:'删除视频',time:'400'});
+  		 this.$toast.success({message:'删除成功',time:'400'});
   		 this.$refs.video.src = '';
   	},
   	onFileChange(e){//穿入视频
@@ -286,26 +330,42 @@ export default {
         //视频上传
         console.log(files)
         let _this = this;
-        //视频预览
-        var reader = new FileReader();
+         
+        var aaa = new upload(files[0]);
+        aaa.setApi("/wechat/api/uploadVideo");
+        aaa.setChunkCallBack(rs=>{
+               console.log(rs,'1111');
+        }).setFinishCallBack(res=>{
+              if(res.status==200){
+              	console.log(res)
+              	 //视频预览
+              	 var reader = new FileReader();
+              	 this.file = files[0];
+              	 this.video_file = res.isLastChunk;
+              	 
+              	 reader.onload = function(){
+                 	  _this.$refs.video.src = this.result;
+              	 };
 
-        this.file = files[0];
-        this.video_file = files[0];
-        reader.onload = function(){
-            _this.$refs.video.src = this.result;
-        };
+              	 reader.readAsDataURL(this.file);
 
-        reader.readAsDataURL(this.file);
-
-        this.bofang_sw = true;
+              	 this.bofang_sw = true;
         
-        this.$toast.success({message:'上传视频成功',time:'700'})
-  		   	
+              	 this.$toast.success({message:'上传视频成功',time:'400'})
+              	 
+                    }
+              	 });
+              	 
+          aaa.startUpload();
+        
   	},
   	
   	
   },
   mounted(){
+  	  
+  	  this.git_iphone();//检测是否完善信息
+  	
   	  store.state.btn_show = true;
   	  store.state.bottom_1 = false;store.state.bottom_2 = false;store.state.bottom_3 = true;
   	  window.scrollTo(0,0);  

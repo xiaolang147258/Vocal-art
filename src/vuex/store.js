@@ -24,7 +24,7 @@ Vue.use(Vuex);
 	 	   	Initialization.add = function(url){	}
 	 	   	    	
 const state = {
-	urls:'http://video.cieo.com.cn/',//全局请求头
+	urls:'http://video-mp.cieo.com.cn',//全局请求头
 	
 	data:{//全局存储当前登录用登录信息
 		

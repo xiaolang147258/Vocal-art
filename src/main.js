@@ -9,7 +9,8 @@ import store from './vuex/store'
 Vue.use(Vuex)
 
 import axios from 'axios'
-Vue.prototype.$http= axios
+Vue.prototype.axios = axios;
+axios.defaults.baseURL='/wechat/api'; 
 
 import MuseUI from 'muse-ui';
 import 'muse-ui/dist/muse-ui.css';

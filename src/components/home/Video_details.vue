@@ -77,6 +77,7 @@
 <script>
 import store from '../../vuex/store.js'
 import router from '../../router/index.js'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -133,7 +134,6 @@ export default {
         store.state.video_b_url = 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=604482600,1393215599&fm=27&gp=0.jpg';
         store.state.dat.Initializationone('http://demo-videos.qnsdk.com/movies/qiniu.mp4','1');
       },100)
-     
       window.scrollTo(0,0);  
       
       let win_height = document.documentElement.clientHeight;
@@ -205,8 +205,7 @@ margin: 0.4rem auto;
 		 z-index: 500;
 		 background: rgba(0,0,0,.5);
 	}
-	
-	
+    
 	.btn_boxsbtn{
 		 width: 3.346666rem;
 		 height: 100%;
