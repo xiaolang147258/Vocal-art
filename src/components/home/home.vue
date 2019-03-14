@@ -1,6 +1,6 @@
 <template>
   <!--首页-->
-  <div id="hello" style="width:100%;background:#F8515E;padding-bottom: 0.413333rem;float: left;">
+  <div id="hello" style="width:100%;background:#F8515E;padding-bottom:0.413333rem;float: left;">
   	
   	  <img class="feng1" src="../../../static/img/fengye.png" alt="" />
   	  <img class="feng2" src="../../../static/img/fengye_b.png"/>
@@ -51,7 +51,7 @@
       	  	  
       	  	   <div class="xuan_xiang_box">
       	  	   	
-      	  	   	 <div v-for="(i,index) in 6" class="xuan_xiang_box_c">
+      	  	   	 <div v-for="(i,index) in 6" class="xuan_xiang_box_c" @click="go_vdet">
       	  	   	 	  <div class="img_box_s"><img src="http://img2.imgtn.bdimg.com/it/u=3991096239,1179572883&fm=26&gp=0.jpg"/>
       	  	   	 	    <div class="img_btn">231号</div></div>
       	  	   	 	  <p class="names">陈立农</p>
@@ -85,6 +85,13 @@ export default {
     }
   },
   methods:{
+  	go_vdet(){
+  		  router.push({
+  	   	 path:'./Video_details'
+  	   });
+  	   window.location.reload()
+  	},
+  	
   	inp_fl(){
   		document.getElementById('inp').focus()
   	},
@@ -98,7 +105,7 @@ export default {
   	   this.$store.state.bottom_1 = true;
   	   this.$store.state.bottom_2 = false;
   	   this.$store.state.bottom_3 = false;
-	   
+	     window.scrollTo(0,0);  
   }
 }
 

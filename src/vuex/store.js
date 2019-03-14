@@ -7,7 +7,7 @@ Vue.use(Vuex);
   
    Initialization.one=function(url,i){
 
-             var video_show = localStorage.video_show==1?false:true
+//           var video_show = localStorage.video_show==1?false:true
        
 	 	   	     var options = {
                 controls: true,
@@ -56,10 +56,7 @@ const state = {
     
 };
         
-	 	   
-
-
-
+	 	
 //修改状态
 const mutations = {
 	 del(state){

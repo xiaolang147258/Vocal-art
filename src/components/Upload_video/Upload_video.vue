@@ -78,7 +78,7 @@
      	  	  	 <div class="video_tab_box" v-for="i in 5">
      	  	  	 	  <p class="video_ps">上传日期：2019-03-08  22:21:32</p>
      	  	  	 	  <div class="video_box">
-     	  	  	 	  	  <div class="video_img_box">
+     	  	  	 	  	  <div @click="go_vdieo" class="video_img_box">
      	  	  	 	  	  	<img id="video_img_box_img2" src="../../../static/img/upimg/bofanganniu.png" alt="" />
      	  	  	 	  	  	<img id="video_img_box_img1" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1800442878,3200333987&fm=27&gp=0.jpg" alt="" />
      	  	  	 	  	  </div>
@@ -194,6 +194,13 @@ export default {
     }
   },
   methods:{
+  	go_vdieo(){
+  		 router.push({
+  	   	  path:'./Video_details',
+  	   });
+  	   window.location.reload()
+  	},
+  	
   	git_home(){
   		
   		 router.push({
@@ -301,7 +308,7 @@ export default {
   mounted(){
   	  store.state.btn_show = true;
   	  store.state.bottom_1 = false;store.state.bottom_2 = false;store.state.bottom_3 = true;
-  	  
+  	  window.scrollTo(0,0);  
 //	  window.setTimeout(()=>{
 //	  	document.getElementById('hello').style.minHeight = document.documentElement.clientHeight+'px';
 //	  },0)
@@ -439,7 +446,7 @@ color: white;
 	.left_inf3{
 		 width:3.88rem;
 		 height:4.133333rem;
-		 position: fixed;
+		 position: absolute;
 		 bottom:0;
 		 right: 0;
 		 z-index: 0;
@@ -447,7 +454,7 @@ color: white;
 	.left_inf2{
 		 width:1.773333rem;
 		 height:3.613333rem;
-		 position: fixed;
+		 position: absolute;
 		 top:7.506666rem;
 		 left: 0;
 		 z-index: 0;
@@ -455,7 +462,7 @@ color: white;
 	.left_inf{
 		 width: 1.76rem;
 		 height: 3.053333rem;
-		 position: fixed;
+		 position: absolute;
 		 top: 3.52rem;
 		 right: 0;
 		 z-index: 0;

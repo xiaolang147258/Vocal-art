@@ -23,6 +23,7 @@ export default {
   	
   },
   mounted(){
+  	  window.scrollTo(0,0);  
   	  store.state.btn_show = true;
   	  store.state.bottom_1 = false;store.state.bottom_2 = true;store.state.bottom_3 = false;
 //	  document.getElementById('hello').style.minHeight = document.documentElement.clientHeight+'px';
