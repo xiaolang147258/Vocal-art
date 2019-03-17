@@ -3,24 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
 import Vuex from 'vuex'
 import store from './vuex/store'
 Vue.use(Vuex)
-
 import axios from 'axios'
 Vue.prototype.axios = axios;
-axios.defaults.baseURL='/wechat/api'; 
-
-
+axios.defaults.baseURL='/api';//配置本地服务器代理 config/index.js/14行
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI);
 router.beforeEach((to, from, next) => {
-  window.document.title = to.meta.title;
+  window.document.title = to.meta.title;//网页注入 title
   next()
 })
-
-
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
