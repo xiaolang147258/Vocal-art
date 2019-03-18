@@ -8,7 +8,7 @@
       	<input type="text"  id="inp" placeholder="搜索" />
       	<img src="../static/img/sou.jpg" alt="" />
       </div>
-      <div class="tab" :class="{tabs:tab_i==index}" v-for="(i,index) in tab_act" @click="tab_click(i,index)">{{i}}</div>  
+      <div class="tab" :class="{tabs:indexa==index}" v-for="(i,index) in tab_act" @click="tab_click(i,index)">{{i}}</div>  
   	</div>
   </div>
    
@@ -63,11 +63,15 @@ export default {
   data(){
   	return{
   		tab_act:['首页','品牌信息','课程体系','品牌合作','联系我们'],
-  		tab_i:0,
+//		tab_i:0,
   		
   	}
   },
-  
+  computed:{
+  	 indexa(){
+  	 	  return this.$store.state.btn_box_show
+  	 },
+  },
  methods:{
  	
  	 tab_click(i,index){
@@ -76,17 +80,38 @@ export default {
  	 	   	  router.push({
 	   	       path:'./home',
 	        });
+ 	 	   }else if(index==1){
+ 	 	   	  router.push({
+	   	       path:'./Brand_information',
+	        });
+ 	 	   }else if(index==2){
+ 	 	   	  router.push({
+	   	       path:'./curriculum_structure',
+	        });
+ 	 	   }else if(index==3){
+ 	 	   	  router.push({
+	   	       path:'./brand_cooperation',
+	        });
+ 	 	   }else if(index==4){
+ 	 	   	  router.push({
+	   	       path:'./about_us',
+	        });
  	 	   }
  	 },
  
  },
  mounted(){
-   	 document.getElementsByTagName('body')[0].style.zoom=1;
+// 	 document.getElementsByTagName('body')[0].style.zoom=1;
+   console.log(this.$store.state.btn_box_show)
  }
 }
 </script>
 
 <style scoped="scoped">
+	*{
+		font-family: "FangSong_GB2312";
+	}
+	
 	.img_box_to img{
 		width: 43px;
 		height: 43px;
@@ -158,6 +183,9 @@ export default {
 		 font-size: 21px;
 		 margin-left:10px;
 		 background:#b0ce2f;
+	}
+	.tab:hover{
+		cursor: pointer;
 	}
 	.tab{
 		 /*width: 120px;*/

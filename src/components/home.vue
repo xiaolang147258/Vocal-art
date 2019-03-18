@@ -53,7 +53,7 @@ export default {
   },
   mounted(){
   	  window.scrollTo(0,0);  
-  	  
+  	  store.state.btn_box_show = 0;
   }
 }
 </script>
