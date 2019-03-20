@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="padding-top: 100px;">
   	
   <div class="top">
   	<div style="width: 1331px;height:100%;margin: 0 auto;color: #606060;">
@@ -12,7 +12,9 @@
   	</div>
   </div>
    
-   <router-view class="transitionBody"></router-view>
+  
+     <router-view class="transitionBody"></router-view>
+ 
    
    <div class="tab_bom">
    	  <div style="width: 1248px;height:100%;margin: 0 auto;">
@@ -67,6 +69,7 @@ export default {
   		
   	}
   },
+  
   computed:{
   	 indexa(){
   	 	  return this.$store.state.btn_box_show
@@ -101,7 +104,7 @@ export default {
  
  },
  mounted(){
-// 	 document.getElementsByTagName('body')[0].style.zoom=1;
+   	 document.getElementsByTagName('body')[0].style.zoom=0.8;
    console.log(this.$store.state.btn_box_show)
  }
 }
@@ -151,12 +154,12 @@ export default {
 		 margin-right: 51px;
 	}
 	.pas{
-		font-size: 18px;
+		font-size: 16px;
 		color: #adadad;
 		line-height: 41px;
 	}
 	.tabsa{
-		 font-size: 28px;
+		 font-size: 26px;
 		 color: white;
 		 font-weight: 600;
 		 margin-bottom: 14px;
@@ -194,8 +197,8 @@ export default {
 		 text-align: center;
 		 line-height: 100px;
 		 padding: 0 12px;
-		 font-size: 21px;
-		 margin-left:10px;
+		 font-size: 19px;
+		 margin-left:30px;
 	}
 	
 	.inp_box img{
@@ -230,16 +233,17 @@ export default {
 		background:#f5f5f5;
 		border-bottom:1px solid #bfbfbf;
 		overflow: hidden;
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 500;
 	}
 	.logo{
 		height:100%;
 		float: left;
-		margin-left: 20px;
+		margin-left: 10px;
 		margin-top:1px;
 	}
 
 	
- 
-
-
 </style>

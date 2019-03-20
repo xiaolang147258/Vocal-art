@@ -9,9 +9,16 @@ Vue.use(Vuex)
 import axios from 'axios'
 Vue.prototype.axios = axios;
 axios.defaults.baseURL='/api';//配置本地服务器代理 config/index.js/14行
+
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
+
+import MuseUI from 'muse-ui';
+import 'muse-ui/dist/muse-ui.css';
+
+import $ from 'jquery'
+
 router.beforeEach((to, from, next) => {
   window.document.title = to.meta.title;//网页注入 title
   next()

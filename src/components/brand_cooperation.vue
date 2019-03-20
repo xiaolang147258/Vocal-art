@@ -65,7 +65,7 @@ export default {
 	.text{
 		  width: 100%;
 		  font-size: 17px;
-		  line-height: 35px;
+		  line-height: 37px;
 		  text-align:justify;
 		  margin-top:63px;
 		  
@@ -85,7 +85,7 @@ export default {
 	 }
 	
 	.right_p{
-		font-size: 17px;
+		font-size: 15px;
 		float: right;
 	}
 	.top_box_c_box_p{
@@ -97,7 +97,7 @@ export default {
 	.left{
 		float: left;
 		margin-right:25px;
-		font-size: 23px;
+		font-size: 20px;
 	}
 	.top_box_c_box:hover{
 		cursor: pointer;

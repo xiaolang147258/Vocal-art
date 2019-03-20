@@ -8,11 +8,40 @@
                </el-carousel-item>
          </el-carousel>
       </div>
+      
       <div class="top_2_box">
-      	  <img src="../../static/img/zhpong1.jpg" alt="" />
-      	  <img src="../../static/img/zhpong2.jpg" alt="" />
-      	  <img style="margin:0;" src="../../static/img/zhpong3.jpg" alt="" />
+      	
+      	  <div @mouseenter="truesa1=true" @mouseleave="truesa1=false" class="top_2_box_box" style="-moz-box-shadow:0px 3px 18px #9DBC18; -webkit-box-shadow:0px 3px 18px #9DBC18; box-shadow:0px 3px 18px #9DBC18;">
+      	  	<img src="../../static/img/shouyeaaa_03.jpg" alt="" />
+      	  	 <transition name="el-zoom-in-top">
+                <div v-show="truesa1" class="mengs" style="background: rgba(157, 188, 24, 0.7);">
+                	   <p>教学特色</p>
+                	   <div style="color: rgba(157, 188, 24, 0.7);">More</div>
+                </div>
+           </transition>
+      	  </div>
+      	  
+      	  <div @mouseenter="truesa2=true" @mouseleave="truesa2=false" class="top_2_box_box" style="-moz-box-shadow:0px 3px 18px #e77e31; -webkit-box-shadow:0px 3px 18px #e77e31; box-shadow:0px 3px 18px #e77e31;">
+      	  	<img src="../../static/img/shouyeaaa_05.jpg" alt="" />
+      	  	<transition name="el-zoom-in-top">
+                <div v-show="truesa2" class="mengs" style="background: rgba(231, 126, 49, 0.7);">
+                	   <p>发声动态</p>
+                	   <div style="color: rgba(231, 126, 49, 0.7);">More</div>
+                </div>
+            </transition>
+      	  </div>
+      	  
+      	  <div @mouseenter="truesa3=true" @mouseleave="truesa3=false" class="top_2_box_box" style="margin:0;-moz-box-shadow:0px 3px 18px #9DBC18; -webkit-box-shadow:0px 3px 18px #9DBC18; box-shadow:0px 3px 18px #9DBC18;">
+      	  	<img src="../../static/img/shouyeaaa_07.jpg" alt="" />
+      	  	<transition name="el-zoom-in-top">
+                <div v-show="truesa3" class="mengs" style="background: rgba(157, 188, 24, 0.7);">
+                	   <p>合作加盟</p>
+                	   <div style="color: rgba(157, 188, 24, 0.7);">More</div>
+                </div>
+            </transition>
+      	  </div>
       </div>
+      
       <div class="fasheng_p"><img src="../../static/img/fasheng.jpg" alt="" /></div>
       <div class="top_3_box">
       	  <img src="../../static/img/top3.jpg"/>
@@ -24,7 +53,10 @@
       
       <div class="xin_box">
       	  <div class="xin_box_c" v-for="(i,index) in 6">
-      	  	 <div class="xin_box_c_box"></div>
+      	  	 <div class="xin_box_c_box" >
+      	  	 	<div class="meng"><img src="../../static/img/bo.png" alt="" /></div>
+      	  	 	<img class="xin_box_c_box_img" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3220681365,3634029949&fm=27&gp=0.jpg" alt="" />
+      	  	 </div>
       	  	 <div class="p_box">鞠萍姐携手各位大咖同台亮相鞠萍姐携手各位大咖同台亮相</div>
       	  </div>
       </div>
@@ -45,11 +77,16 @@ export default {
   
   data () {
     return {
+    	 truesa1:false,
+    	 truesa2:false,
+    	 truesa3:false,
+    	 
     	 
     }
   },
   methods:{
-  	
+  	 
+  	 
   },
   mounted(){
   	  window.scrollTo(0,0);  
@@ -59,6 +96,59 @@ export default {
 </script>
 
 <style scoped>
+	.mengs div{
+		 width: 150px;
+		 height: 60px;
+		 background: white;
+		 border-radius: 30px;
+		 line-height: 60px;
+		 text-align: center;
+		 font-size: 24px;
+		 margin: 20px auto;
+		 
+	}
+	.mengs p{
+		font-size: 30px;
+		color: white;
+	}
+	.mengs{
+		 width: 100%;
+		 height: 100%;
+		 position: absolute;
+		 top: 0;
+		 left: 0;
+		 z-index: 300;
+		 text-align: center;
+		 padding-top: 90px;
+	}
+	
+	.xin_box_c_box_img{
+		width: 100%;
+		min-height: 100%;
+	}
+	.meng img{
+		width: 106px;
+		height: 106px;
+		margin: 73px 149px;
+	}
+	.xin_box_c_box:hover .meng{
+		opacity:1;
+		transition:0.5s;
+	}
+	.xin_box_c_box:hover{
+		 cursor: pointer;
+	}
+	.meng{
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,.7);
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 400;
+		opacity:0;
+		transition:0.5s;
+	}
 	.to_top{
 		width: 50px;
 		height: 50px;
@@ -68,7 +158,7 @@ export default {
 		z-index:500;
 	}
 	.p_box{
-		font-size: 21px;
+		font-size: 18px;
 		width: 345px;
 		margin: 30px auto 0 auto;
 		text-align: center;
@@ -82,11 +172,13 @@ export default {
 		border-radius:10px;
 		overflow:hidden;
 		background: #475669;
+		position: relative;
 	}
 	.xin_box_c{
 		width: 402px;
 		height:303px;
 		float: left;
+		position: relative;
 	}
 	.xin_box{
 		width: 1326px;
@@ -127,11 +219,18 @@ export default {
 		height: 189px;
 		margin: 0 auto;
 	}
-	.top_2_box img{
+	.top_2_box_box img{
+		 width: 100%;
+		 height: 100%;
+	}
+	.top_2_box_box{
 		width: 433px;
 		height: 100%;
 		float: left;
 		margin-right: 16px;
+		position: relative;
+		overflow: hidden;
+		border-radius: 4px;
 	}
 	.top_2_box{
 		width: 1331px;
@@ -163,6 +262,6 @@ export default {
   }
 	.swip_box{
 		 width: 100%;
-		 height: 500px;
+		 height: 700px;
 	}
 </style>

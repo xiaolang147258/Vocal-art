@@ -77,25 +77,29 @@ export default {
 <style scoped>
 	#box1:hover #dian1{
 		background: #b7d537;
+		transition: 0.4s;
 	}
 	#box1:hover #shan1{
 		background:url('../../static/img/right2.jpg');
+		transition: 0.4s;
 	}
 	#box1:hover{
 		background: #b7d537;
+		transition: 0.4s;
 	}
 	
 	#box2:hover #dian2{
 		background: #b7d537;
+		transition: 0.4s;
 	}
 	#box2:hover #shan2{
 		background:url('../../static/img/right2.jpg');
-		
 	   -webkit-transform: rotate(180deg);
 		
 	}
 	#box2:hover{
 		background: #b7d537;
+		transition: 0.4s;
 	}
 	
 	#shan2{
@@ -133,15 +137,14 @@ export default {
 		padding: 23px 23px 0 23px;
 		box-sizing: border-box;
 		position: relative;
+		
+		transition: 0.4s;
 	}
-	
-	
-	
 	
 	.tet_box{
 		width: 397px;
 		height:120px;
-		font-size: 16px;
+		font-size: 15px;
 		text-align:justify;
 		display: -webkit-box;  
 		display: -moz-box;  
@@ -259,7 +262,7 @@ export default {
 	}
 	
 	.right_p{
-		font-size: 17px;
+		font-size: 15px;
 		float: right;
 	}
 	.top_box_c_box_p{
@@ -271,7 +274,7 @@ export default {
 	.left{
 		float: left;
 		margin-right:19px;
-		font-size: 23px;
+		font-size: 20px;
 	}
 	.top_box_c_box:hover{
 		cursor: pointer;
