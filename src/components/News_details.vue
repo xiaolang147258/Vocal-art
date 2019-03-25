@@ -9,40 +9,25 @@
     	<div class="top_box_c_box">
     		<span><p class="left" v-for="(i,index) in tab" @click="p_click(i,index)" :class="{top_box_c_box_p:tab_show==index}">{{i}}&nbsp;&nbsp;&nbsp;&nbsp;<a>|</a></p></span>
             <span>
-            	<p class="right_p" style="color:#b7d537;"><a>/</a>发声艺术介绍</p>
+            	<p class="right_p" style="color:#b7d537;"><a>/</a>发声艺术2017大记实</p>
+            	<p class="right_p"><a>/</a>发声艺术介绍</p>
             	<p class="right_p"><a>/</a>品牌信息</p>
             	<p class="right_p">首页</p>
             </span>
     	</div>
     </div>
     
-    <div class="btn_box">
-    	<p class="tabls">发声艺术介绍</p>
-    	
-       <div class="btn_box_box_f">
-       	 <div class="btn_box_box" id="box1" v-for="(i,index) in 3" @click="to_newdetails">
-    		<div id="shan1" class="shan"></div>
-    		<p class="p_ta">2018</p>
-    		<div class="img_box"><img src="../../static/img/pin1.jpg" alt="" /></div>
-    		<p class="tet_box">发声艺术商标注册有十年之久发，声艺术商标注册有十年之久发声艺术商标注册有十年之久，发声艺术商标注册有十年之久</p>
-    		<div class="shu_xian_box" id="dian1"></div>
-    	 </div>
-       </div>
-    	
-    	<div class="shu_xian"></div>
-    		
-       <div class="btn_box_box_f_s">
-       	 <div class="btn_box_box" id="box2" v-for="(i,index) in 2"  @click="to_newdetails">
-    		<div id="shan2" class="shan"></div>
-    		<p class="p_ta">2017</p>
-    		<div class="img_box"><img src="../../static/img/pin2.jpg" alt="" /></div>
-    		<p class="tet_box">发声艺术商标注册有十年之久发，声艺术商标注册有十年之久发声艺术商标注册有十年之久，发声艺术商标注册有十年之久</p>
-    		<div id="dian2"></div>
-    	 </div>
-       </div>
-    	
-    	
+    <div class="val_box">
+    	<p class="psa">发声艺术2017大记实</p>
+    	<img src="../../static/img/pinpai/xiangs.jpg" alt="" />
+    	<div>
+                          由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国
+    	    由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国
+    	    由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国
+    	    由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国由于教材的专业性，被浙江省选中为武安国
+    	</div>
     </div>
+    
   </div>
 </template>
 
@@ -54,18 +39,13 @@ import axios from 'axios'
 export default {
   data () {
     return {
-    	tab:['发声艺术介绍','发声艺术名人','发声艺术团队'],
+    	tab:['发声艺术介绍','发声艺术名人','发声艺术团队','资质荣誉'],
     	tab_show:0,
     	
     	
     }
   },
   methods:{
-  	 to_newdetails(){
-  	 	    router.push({
-	   	       path:'./News_details',
-	        });
-  	 },
   	 p_click(i,index){
   	 	this.tab_show = index
   	 },
@@ -80,50 +60,29 @@ export default {
 </script>
 
 <style scoped>
-	#box1:hover #dian1{
-		background: #b7d537;
-		transition: 0.4s;
+	.val_box div{
+		 width: 100%;
+		 font-size: 17px;
+		 color: #606060;
+		 text-align:justify;
+		 margin-top: 47px;
+		 line-height: 40px;
 	}
-	#box1:hover #shan1{
-		background:url('../../static/img/right2.jpg');
-		transition: 0.4s;
+	.val_box img{
+		width: 100%;
+		height: 546px;
+		margin-top: 57px;
 	}
-	#box1:hover{
-		background: #b7d537;
-		transition: 0.4s;
+	.psa{
+		font-size: 28px;
+		text-align: center;
+		color: #606060;
 	}
-	
-	#box2:hover #dian2{
-		background: #b7d537;
-		transition: 0.4s;
-	}
-	#box2:hover #shan2{
-		background:url('../../static/img/right2.jpg');
-	   -webkit-transform: rotate(180deg);
-		
-	}
-	#box2:hover{
-		background: #b7d537;
-		transition: 0.4s;
-	}
-	
-	#shan2{
-		 width: 22px;
-      height: 38px;
-    position: absolute;
-    left:-22px;
-    top: 23px;
-    background:url('../../static/img/left1.jpg');
-    background-size:100% 100%;background-repeat:no-repeat;
-	}
-	#dian2{
-		width: 11px;
-		height: 11px;
-		border-radius: 50%;
-		background:#d0d0d0;
-		position: absolute;
-		left: -42px;
-		top:-5px;
+	.val_box{
+		width: 925px;
+		margin: 0 auto 60px auto;
+		padding-top: 77px;
+		box-sizing: border-box;
 	}
 	
 	.btn_box_box_f_s{
